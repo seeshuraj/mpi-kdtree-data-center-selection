@@ -71,7 +71,7 @@ def test_realistic_data():
             
             # Check if data is large enough for this process count
             if len(data) < size * 2:
-                print(f"⚠️  Data too small ({len(data)} points) for {size} processes")
+                print(f"  Data too small ({len(data)} points) for {size} processes")
                 print("   (Need at least 2 points per process)")
                 return None
             
@@ -82,7 +82,7 @@ def test_realistic_data():
             serial_dists, serial_inds = serial_tree.query(query, k=k)
             print(f"Serial result - indices: {serial_inds[0]}")
         except FileNotFoundError:
-            print("❌ ERROR: data/metrics.csv not found!")
+            print(" ERROR: data/metrics.csv not found!")
             return False
     else:
         data = None
@@ -99,7 +99,7 @@ def test_realistic_data():
     
     if data is None or len(data) < 2 or k is None:
         if rank == 0 and data is None:
-            print("❌ No data loaded")
+            print(" No data loaded")
         return None
     
     tree = ParallelKDTree(data)
@@ -109,10 +109,10 @@ def test_realistic_data():
     
     if rank == 0:
         if np.allclose(serial_dists, parallel_dists, rtol=1e-5):
-            print("✅ REALISTIC DATA TEST PASSED - Results match!")
+            print(" REALISTIC DATA TEST PASSED - Results match!")
             return True
         else:
-            print("❌ REALISTIC DATA TEST FAILED")
+            print(" REALISTIC DATA TEST FAILED")
             return False
     return None
 
@@ -158,14 +158,14 @@ def test_correctness_large_synthetic():
                 break
         
         if all_match:
-            print("✅ LARGE SYNTHETIC DATA TEST PASSED!")
+            print(" LARGE SYNTHETIC DATA TEST PASSED!")
             profile = tree.profile_communication()
             comm_overhead = profile.get('comm_overhead_pct', 0)
             if isinstance(comm_overhead, (int, float)):
                 print(f"   Communication overhead: {comm_overhead:.1f}%")
             return True
         else:
-            print("❌ LARGE SYNTHETIC DATA TEST FAILED")
+            print(" LARGE SYNTHETIC DATA TEST FAILED")
             return False
     return None
 
@@ -190,10 +190,10 @@ if __name__ == "__main__":
         print("="*60)
         for test_name, result in results:
             if result is True:
-                status = "✅ PASS"
+                status = " PASS"
             elif result is False:
                 status = "❌ FAIL"
             else:
-                status = "⚠️  SKIP"
+                status = "  SKIP"
             print(f"{test_name:.<40} {status}")
         print("="*60)
