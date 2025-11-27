@@ -1,0 +1,29 @@
+[
+  {
+    "data_size": 500,
+    "processes": 8,
+    "serial_time": 0.0012836456298828125,
+    "parallel_time": 0.005464792251586914,
+    "speedup": 0.2348937655425156,
+    "efficiency": 2.936172069281445,
+    "comm_overhead_percent": 82.58930833544464
+  },
+  {
+    "data_size": 1000,
+    "processes": 8,
+    "serial_time": 0.0006511211395263672,
+    "parallel_time": 0.001461029052734375,
+    "speedup": 0.4456592689295039,
+    "efficiency": 5.570740861618799,
+    "comm_overhead_percent": 73.55391022674688
+  },
+  {
+    "data_size": 5000,
+    "processes": 8,
+    "serial_time": 0.0019974708557128906,
+    "parallel_time": 0.002439737319946289,
+    "speedup": 0.8187237369295417,
+    "efficiency": 10.234046711619271,
+    "comm_overhead_percent": 71.032961646857
+  }
+]
